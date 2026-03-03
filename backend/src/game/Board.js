@@ -113,6 +113,22 @@ export default class Board{
                 throw new Error("Direção inválida");
         }
 
+        for (let i = 0; i < ship.size; i++) {
+            let targetRow = newRow;
+            let targetCol = newCol;
+            
+            if (ship.orientation === 'horizontal') {
+                targetCol += i;
+            } else {
+                targetRow += i;
+            }
+
+            const attackKey = `${targetRow},${targetCol}`;
+            if (this.attacks.includes(attackKey)) {
+                throw new Error("Movimento inválido! A nova posição inclui posições já atacadas.");
+            }
+        }
+
         this._removeShipFromGrid(ship); //remove o navio da posição atual temporariamente p/ evitar colisão com ele mesmo
 
         if(!this.isValidPlacement(ship, newRow, newCol, ship.orientation)){

@@ -2,7 +2,7 @@ export default class Player {
     constructor(id, name, type='human') {
         this.id = id;
         this.name = name;
-        this.type = type; //human ou computer
+        this.type = type;
         this.board = null;
 
         this.hasMovedThisTurn = false; //indica s eo jogador ja movimentou algum navio(modo dinamico)
